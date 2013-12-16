@@ -1,0 +1,90 @@
+#navs {
+	margin: 0;
+	background: #808080;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+ }
+#navs li {
+	padding: 5px 0px 6px;
+	float: left;
+	position: relative;
+	list-style: none;
+	z-index: 999;
+ }
+
+/* main level link */
+#navs a {
+color: #FFF;
+text-decoration: none;
+padding: 10px 20px;
+font-family: "Fjalla One";
+font-size: 18px;
+line-height: 32px;
+ }
+#navs a:hover {
+ background: #000;
+ color: #fff;
+ }
+ .current-menu-item {
+ 	background: #64C9D1;
+	color: #FFF;
+ }
+
+/* main level link hover */
+#navs .current a, #navs li:hover > a {
+	background: #64C9D1;
+	color: #fff;
+ }
+/* dropdown */
+#navs li:hover > ul {
+ display: block;
+}
+nav ul li:hover ul li a {
+	display:block; color:#fff;
+}
+/* level 2 list */
+#navs ul {
+display: none;
+margin: 0;
+padding: 0;
+width: 210px;
+position: absolute;
+top: 42px;
+left: 0px;
+background: #EDC715;
+float: left;
+ }
+#navs ul a {
+	display: block;
+}
+ #navs ul a:hover {
+ 	background: #64C9D1;
+ }
+#navs ul li {
+float: none;
+margin: 0;
+padding: 0;
+display: block;
+}
+/* level 3+ list */
+#navs ul ul {
+ left: 180px;
+ top: 0px;
+}
+
+/* clearfix */
+#navs:after {
+ content: ".";
+ display: block;
+ clear: both;
+ visibility: hidden;
+ line-height: 0;
+ height: 0;
+}
+html[xmlns] #navs {
+ display: block;
+}
+ 
+* html #navs {
+ height: 1%;
+}
