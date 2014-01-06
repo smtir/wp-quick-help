@@ -1,6 +1,9 @@
 Wordpress Quick Help 
 ***
 
+[![Screnshot](https://raw.github.com/rm2334/wp-quick-help/master/asset/img/screenshot.jpg "Screenshot Preview")](https://github.com/rm2334/wp-quick-help)
+
+
 এটা বানিয়েছি আমার নিজের আর্কাইভের জন্য, যাতে আমি চট জলদি এখান থেকে সাহায্য নিতে পারি।
 আপনারাও ইচ্ছা করলে ব্যবহার করতে পারেন , এটা সবার জন্য উন্মক্ত।
 
