@@ -1,4 +1,5 @@
 <html>
+<head>
 <title>Themes Development Quick Help</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="distribution" content="global" />
@@ -15,6 +16,7 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/default.min.css">
 <link rel="stylesheet" href="css/nav.css">
+</head>
 <body>
 <div class="wrap">
 <div class="head">
@@ -48,7 +50,8 @@
 		<ul>
 			<li><a href="#post-loop">Post Loop</a></li>
 			<li><a href="#multiple">Multiple Post Loop</a></li>
-			<li><a href="#post-query">Advance Post Query</a></li>
+			<li><a href="#post-query">Advance Post Query</a></li> 
+			<li><a href="#column">Column Post</a></li>
 			<li><a href="#dummy">Dummy Post</a></li>
 			<li><a href="#specific">Specific Page</a></li>
 			<li><a href="#post-class">Post Class</a></li>
@@ -1308,7 +1311,98 @@ jQuery(document).ready(function($) {
 </pre></div></div>
 </div>    
     
-    
+<div class="post">
+<h2><a name="column"></a>Column Post</h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_php snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_symbol">&lt;?php</span></li><li></li><li><span class="sh_variable">$args</span> <span class="sh_symbol">=</span> <span class="sh_string">'category_name=xxx&amp;orderby=title&amp;order=asc&amp;posts_per_page=12'</span><span class="sh_symbol">;</span></li><li><span class="sh_comment">// assuming 'work-archive' is the slug to your category, we are also doing ascending order by title (a,b,c,d), and pulling 9999 posts (hopefully that is more than the number of posts you have!)</span></li><li></li><li><span class="sh_comment">// The Query</span></li><li><span class="sh_variable">$query</span> <span class="sh_symbol">=</span> <span class="sh_keyword">new</span> <span class="sh_function">WP_Query</span><span class="sh_symbol">(</span> <span class="sh_variable">$args</span> <span class="sh_symbol">);</span></li><li></li><li><span class="sh_comment">// Keeping track of the count</span></li><li><span class="sh_variable">$count</span> <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li></li><li><span class="sh_comment">// Number of items per column</span></li><li><span class="sh_variable">$num_per_column</span> <span class="sh_symbol">=</span> <span class="sh_function">round</span><span class="sh_symbol">(</span><span class="sh_variable">$query</span><span class="sh_symbol">-&gt;</span>post_count <span class="sh_symbol">/</span> <span class="sh_number">2</span><span class="sh_symbol">);</span> <span class="sh_comment">// dividing total by columns</span></li><li></li><li><span class="sh_comment">// The Loop</span></li><li><span class="sh_keyword">if</span> <span class="sh_symbol">(</span> <span class="sh_variable">$query</span><span class="sh_symbol">-&gt;</span><span class="sh_function">have_posts</span><span class="sh_symbol">()</span> <span class="sh_symbol">)</span> <span class="sh_symbol">:</span> <span class="sh_symbol">?&gt;</span></li><li>    <span class="sh_symbol">&lt;</span>div<span class="sh_symbol">&gt;</span></li><li>    <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">while</span> <span class="sh_symbol">(</span> <span class="sh_variable">$query</span><span class="sh_symbol">-&gt;</span><span class="sh_function">have_posts</span><span class="sh_symbol">()</span> <span class="sh_symbol">)</span> <span class="sh_symbol">:</span> <span class="sh_variable">$query</span><span class="sh_symbol">-&gt;</span><span class="sh_function">the_post</span><span class="sh_symbol">();</span> <span class="sh_symbol">?&gt;</span></li><li></li><li>        <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">if</span> <span class="sh_symbol">(</span> <span class="sh_variable">$count</span> <span class="sh_symbol">%</span> <span class="sh_variable">$num_per_column</span> <span class="sh_symbol">==</span> <span class="sh_number">0</span> <span class="sh_symbol">)</span> <span class="sh_symbol">:</span> <span class="sh_comment">// If the current count is up to it's limit throw in a new column ?&gt;</span></li><li>    <span class="sh_symbol">&lt;/</span>div<span class="sh_symbol">&gt;</span></li><li>    <span class="sh_symbol">&lt;</span>div <span class="sh_keyword">class</span><span class="sh_symbol">=</span><span class="sh_string">"someclass"</span><span class="sh_symbol">&gt;</span></li><li>        <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">endif</span><span class="sh_symbol">;</span> <span class="sh_symbol">?&gt;</span> </li><li></li><li>        <span class="sh_symbol">&lt;</span>div<span class="sh_symbol">&gt;</span></li><li>            <span class="sh_symbol">&lt;</span>a href<span class="sh_symbol">=</span><span class="sh_string">"&lt;?php the_permalink() ?&gt;"</span><span class="sh_symbol">&gt;&lt;?php</span> <span class="sh_function">the_title</span><span class="sh_symbol">()</span> <span class="sh_symbol">?&gt;&lt;/</span>a<span class="sh_symbol">&gt;</span></li><li>            <span class="sh_symbol">&lt;?php</span> <span class="sh_function">the_content</span><span class="sh_symbol">(</span><span class="sh_string">'Read More »'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li>        <span class="sh_symbol">&lt;/</span>div<span class="sh_symbol">&gt;</span></li><li></li><li>        <span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$count</span><span class="sh_symbol">++;</span> <span class="sh_comment">// Increment counter ?&gt;</span></li><li></li><li>    <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">endwhile</span><span class="sh_symbol">;</span> <span class="sh_symbol">?&gt;</span></li><li>    <span class="sh_symbol">&lt;/</span>div<span class="sh_symbol">&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">endif</span><span class="sh_symbol">;</span> </li><li></li><li><span class="sh_comment">/* Restore original Post Data */</span></li><li><span class="sh_function">wp_reset_postdata</span><span class="sh_symbol">();</span></li><li></li><li><span class="sh_symbol">?&gt;</span></li><li></li><li><span class="sh_symbol">=====</span></li><li><span class="sh_keyword">or</span></li><li><span class="sh_symbol">=====</span></li><li></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">global</span> <span class="sh_variable">$query_string</span><span class="sh_symbol">;</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span></li><li><span class="sh_variable">$set_number_of_columns</span> <span class="sh_symbol">=</span> <span class="sh_number">3</span><span class="sh_symbol">;</span> <span class="sh_comment">// enter numbers of columns here;</span></li><li><span class="sh_variable">$set_number_of_rows</span> <span class="sh_symbol">=</span> <span class="sh_number">6</span><span class="sh_symbol">;</span> <span class="sh_comment">// enter numbers of rows here</span></li><li><span class="sh_variable">$set_showpost</span> <span class="sh_symbol">=</span> <span class="sh_variable">$set_number_of_columns</span> <span class="sh_symbol">*</span> <span class="sh_variable">$set_number_of_rows</span> <span class="sh_symbol">;</span></li><li><span class="sh_comment">//setup query with parameter for paged</span></li><li><span class="sh_variable">$paged</span> <span class="sh_symbol">=</span> <span class="sh_symbol">(</span><span class="sh_function">get_query_var</span><span class="sh_symbol">(</span><span class="sh_string">'paged'</span><span class="sh_symbol">))</span> <span class="sh_symbol">?</span> <span class="sh_function">get_query_var</span><span class="sh_symbol">(</span><span class="sh_string">'paged'</span><span class="sh_symbol">)</span> <span class="sh_symbol">:</span> <span class="sh_number">1</span><span class="sh_symbol">;</span></li><li><span class="sh_function">query_posts</span><span class="sh_symbol">(</span><span class="sh_variable">$query_string</span><span class="sh_symbol">.</span><span class="sh_string">'&amp;showposts='</span><span class="sh_symbol">.</span><span class="sh_variable">$set_showpost</span><span class="sh_symbol">.</span><span class="sh_string">'&amp;paged='</span><span class="sh_symbol">.</span><span class="sh_variable">$paged</span><span class="sh_symbol">);</span></li><li><span class="sh_comment">// get number of posts for this,</span></li><li><span class="sh_variable">$num_of_posts</span> <span class="sh_symbol">=</span> <span class="sh_variable">$wp_query</span><span class="sh_symbol">-&gt;</span>post_count<span class="sh_symbol">;</span></li><li><span class="sh_comment">// make adjustment for paged to get three equaly long columns even on last paged page</span></li><li><span class="sh_comment">// divide by $set_number_of_columns to get number per column,</span></li><li><span class="sh_comment">// round up to next integer to make $ppc posts per column variable, or $set_number_of_rows whatever is smaller</span></li><li><span class="sh_variable">$ppc</span> <span class="sh_symbol">=</span> <span class="sh_function">min</span><span class="sh_symbol">(</span><span class="sh_function">ceil</span><span class="sh_symbol">(</span><span class="sh_variable">$num_of_posts</span><span class="sh_symbol">/</span><span class="sh_variable">$set_number_of_columns</span><span class="sh_symbol">),</span><span class="sh_variable">$set_number_of_rows</span><span class="sh_symbol">);</span></li><li><span class="sh_comment">// calculates number of rows, i.e. showposts for the following query_posts and get_posts</span></li><li><span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">for</span> <span class="sh_symbol">(</span> <span class="sh_variable">$col</span> <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span> <span class="sh_variable">$col</span> <span class="sh_symbol">&lt;=</span> <span class="sh_variable">$set_number_of_columns</span><span class="sh_symbol">;</span> <span class="sh_variable">$col</span> <span class="sh_symbol">+=</span> <span class="sh_number">1</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;</span>div <span class="sh_keyword">class</span><span class="sh_symbol">=</span><span class="sh_string">"someclass"</span><span class="sh_symbol">&gt;</span></li><li><span class="sh_symbol">&lt;?php</span></li><li><span class="sh_variable">$row</span> <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span></li><li><span class="sh_variable">$noffset</span> <span class="sh_symbol">=</span> <span class="sh_symbol">(</span><span class="sh_variable">$col</span> <span class="sh_symbol">-</span><span class="sh_number">1</span><span class="sh_symbol">)</span> <span class="sh_symbol">*</span> <span class="sh_variable">$ppc</span> <span class="sh_symbol">+</span> <span class="sh_symbol">(</span><span class="sh_variable">$paged</span> <span class="sh_symbol">-</span> <span class="sh_number">1</span><span class="sh_symbol">)</span> <span class="sh_symbol">*</span> <span class="sh_variable">$set_showpost</span> <span class="sh_symbol">;</span> <span class="sh_comment">//calculate offset parameter if paged</span></li><li><span class="sh_variable">$posts</span> <span class="sh_symbol">=</span> <span class="sh_function">get_posts</span><span class="sh_symbol">(</span><span class="sh_variable">$query_string</span><span class="sh_symbol">.</span><span class="sh_string">'&amp;numberposts='</span><span class="sh_symbol">.</span><span class="sh_variable">$ppc</span><span class="sh_symbol">.</span><span class="sh_string">'&amp;offset='</span><span class="sh_symbol">.</span><span class="sh_variable">$noffset</span><span class="sh_symbol">);</span></li><li><span class="sh_keyword">foreach</span> <span class="sh_symbol">(</span><span class="sh_variable">$posts</span> <span class="sh_keyword">as</span> <span class="sh_variable">$post</span><span class="sh_symbol">)</span> <span class="sh_symbol">:</span> <span class="sh_function">start_wp</span><span class="sh_symbol">();</span> <span class="sh_symbol">?&gt;</span></li><li></li><li><span class="sh_symbol">&lt;</span>div id<span class="sh_symbol">=</span><span class="sh_string">"post-&lt;?php the_ID(); ?&gt;"</span> <span class="sh_keyword">class</span><span class="sh_symbol">=</span><span class="sh_string">"post row-&lt;?php echo ($row%2); ?&gt;"</span><span class="sh_symbol">&gt;</span></li><li><span class="sh_symbol">&lt;</span>h2<span class="sh_symbol">&gt;&lt;</span>a href<span class="sh_symbol">=</span><span class="sh_string">"&lt;?php the_permalink() ?&gt;"</span> rel<span class="sh_symbol">=</span><span class="sh_string">"bookmark"</span> title<span class="sh_symbol">=</span><span class="sh_string">"&lt;?php the_title(); ?&gt;"</span><span class="sh_symbol">&gt;&lt;?php</span> <span class="sh_function">the_title</span><span class="sh_symbol">();</span> <span class="sh_symbol">?&gt;&lt;/</span>a<span class="sh_symbol">&gt;&lt;/</span>h2<span class="sh_symbol">&gt;</span></li><li><span class="sh_symbol">&lt;</span>div <span class="sh_keyword">class</span><span class="sh_symbol">=</span><span class="sh_string">"content"</span><span class="sh_symbol">&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_function">the_content</span><span class="sh_symbol">(</span><span class="sh_string">'Read More »'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;/</span>div<span class="sh_symbol">&gt;</span> <span class="sh_symbol">&lt;!--</span> End<span class="sh_symbol">:</span> Contentclass <span class="sh_symbol">--&gt;</span></li><li><span class="sh_symbol">&lt;/</span>div<span class="sh_symbol">&gt;</span> <span class="sh_symbol">&lt;!--</span> End<span class="sh_symbol">:</span> Postclass <span class="sh_symbol">--&gt;</span> </li><li></li><li><span class="sh_symbol">&lt;?php</span></li><li><span class="sh_variable">$row</span><span class="sh_symbol">++;</span></li><li><span class="sh_keyword">endforeach</span><span class="sh_symbol">;</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;/</span>div<span class="sh_symbol">&gt;</span> <span class="sh_symbol">&lt;!--</span> End<span class="sh_symbol">:</span> Someclass <span class="sh_symbol">--&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_comment">// close the for-loop // ?&gt;</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">&lt;?php
+
+$args = 'category_name=xxx&amp;orderby=title&amp;order=asc&amp;posts_per_page=12';
+// assuming 'work-archive' is the slug to your category, we are also doing ascending order by title (a,b,c,d), and pulling 9999 posts (hopefully that is more than the number of posts you have!)
+
+// The Query
+$query = new WP_Query( $args );
+
+// Keeping track of the count
+$count = 0;
+
+// Number of items per column
+$num_per_column = round($query-&gt;post_count / 2); // dividing total by columns
+
+// The Loop
+if ( $query-&gt;have_posts() ) : ?&gt;
+    &lt;div&gt;
+    &lt;?php while ( $query-&gt;have_posts() ) : $query-&gt;the_post(); ?&gt;
+
+        &lt;?php if ( $count % $num_per_column == 0 ) : // If the current count is up to it's limit throw in a new column ?&gt;
+    &lt;/div&gt;
+    &lt;div class="someclass"&gt;
+        &lt;?php endif; ?&gt; 
+
+        &lt;div&gt;
+            &lt;a href="&lt;?php the_permalink() ?&gt;"&gt;&lt;?php the_title() ?&gt;&lt;/a&gt;
+            &lt;?php the_content('Read More »'); ?&gt;
+        &lt;/div&gt;
+
+        &lt;?php $count++; // Increment counter ?&gt;
+
+    &lt;?php endwhile; ?&gt;
+    &lt;/div&gt;
+&lt;?php endif; 
+
+/* Restore original Post Data */
+wp_reset_postdata();
+
+?&gt;
+
+=====
+or
+=====
+
+&lt;?php global $query_string; ?&gt;
+&lt;?php
+$set_number_of_columns = 3; // enter numbers of columns here;
+$set_number_of_rows = 6; // enter numbers of rows here
+$set_showpost = $set_number_of_columns * $set_number_of_rows ;
+//setup query with parameter for paged
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+query_posts($query_string.'&amp;showposts='.$set_showpost.'&amp;paged='.$paged);
+// get number of posts for this,
+$num_of_posts = $wp_query-&gt;post_count;
+// make adjustment for paged to get three equaly long columns even on last paged page
+// divide by $set_number_of_columns to get number per column,
+// round up to next integer to make $ppc posts per column variable, or $set_number_of_rows whatever is smaller
+$ppc = min(ceil($num_of_posts/$set_number_of_columns),$set_number_of_rows);
+// calculates number of rows, i.e. showposts for the following query_posts and get_posts
+?&gt;
+&lt;?php for ( $col = 1; $col &lt;= $set_number_of_columns; $col += 1) { ?&gt;
+&lt;div class="someclass"&gt;
+&lt;?php
+$row = 1;
+$noffset = ($col -1) * $ppc + ($paged - 1) * $set_showpost ; //calculate offset parameter if paged
+$posts = get_posts($query_string.'&amp;numberposts='.$ppc.'&amp;offset='.$noffset);
+foreach ($posts as $post) : start_wp(); ?&gt;
+
+&lt;div id="post-&lt;?php the_ID(); ?&gt;" class="post row-&lt;?php echo ($row%2); ?&gt;"&gt;
+&lt;h2&gt;&lt;a href="&lt;?php the_permalink() ?&gt;" rel="bookmark" title="&lt;?php the_title(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="content"&gt;
+&lt;?php the_content('Read More »'); ?&gt;
+&lt;/div&gt; &lt;!-- End: Contentclass --&gt;
+&lt;/div&gt; &lt;!-- End: Postclass --&gt; 
+
+&lt;?php
+$row++;
+endforeach; ?&gt;
+&lt;/div&gt; &lt;!-- End: Someclass --&gt;
+&lt;?php } ?&gt;
+&lt;?php // close the for-loop // ?&gt;
+</pre></div></div>
+</div>
+
+<div class="post">
+<h2><a name=""></a></h2>
+
+</div>
+
+
 </div> <!-- End: Content -->
 </div> <!-- End: Wrap -->
 <a href="#" class="scrollup left" style="display: block;">Scroll</a>
