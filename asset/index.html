@@ -87,6 +87,7 @@
 			<li><a href="#lcounter">Loading Counter</a></li>
 			<li><a href="#strick">Some Tricks</a></li>
 			<li><a href="#database">Database URL Change</a></li>
+			<li><a href="#publish">Auto Page Publish</a></li>
 		</ul>
 	</li>
 	<li><a href="#">Jquery</a>
@@ -1398,11 +1399,44 @@ endforeach; ?&gt;
 </div>
 
 <div class="post">
+<h2><a name="publish">Auto Page Publish</a></h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_php snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_function">add_action</span><span class="sh_symbol">(</span><span class="sh_string">'after_setup_theme'</span><span class="sh_symbol">,</span> <span class="sh_string">'create_pages'</span><span class="sh_symbol">);</span> </li><li><span class="sh_keyword">function</span> <span class="sh_function">create_pages</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$awesome_page_id</span> <span class="sh_symbol">=</span> <span class="sh_function">get_option</span><span class="sh_symbol">(</span><span class="sh_string">"awesome_page_id"</span><span class="sh_symbol">);</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(!</span><span class="sh_variable">$awesome_page_id</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_comment">//create a new page and automatically assign the page template</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$post1</span> <span class="sh_symbol">=</span> <span class="sh_keyword">array</span><span class="sh_symbol">(</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_string">'post_title'</span> <span class="sh_symbol">=&gt;</span> <span class="sh_string">"Awesome Page!"</span><span class="sh_symbol">,</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_string">'post_content'</span> <span class="sh_symbol">=&gt;</span> <span class="sh_string">""</span><span class="sh_symbol">,</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_string">'post_status'</span> <span class="sh_symbol">=&gt;</span> <span class="sh_string">"publish"</span><span class="sh_symbol">,</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_string">'post_type'</span> <span class="sh_symbol">=&gt;</span> <span class="sh_string">'page'</span><span class="sh_symbol">,</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_symbol">);</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$postID</span> <span class="sh_symbol">=</span> <span class="sh_function">wp_insert_post</span><span class="sh_symbol">(</span><span class="sh_variable">$post1</span><span class="sh_symbol">,</span> <span class="sh_variable">$error</span><span class="sh_symbol">);</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">update_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$postID</span><span class="sh_symbol">,</span> <span class="sh_string">"_wp_page_template"</span><span class="sh_symbol">,</span> <span class="sh_string">"awesome-page.php"</span><span class="sh_symbol">);</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">update_option</span><span class="sh_symbol">(</span><span class="sh_string">"awesome_page_id"</span><span class="sh_symbol">,</span> <span class="sh_variable">$postID</span><span class="sh_symbol">);</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">add_action('after_setup_theme', 'create_pages'); 
+function create_pages(){
+&nbsp;&nbsp;&nbsp;&nbsp;$awesome_page_id = get_option("awesome_page_id");
+&nbsp;&nbsp;&nbsp;&nbsp;if (!$awesome_page_id) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//create a new page and automatically assign the page template
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$post1 = array(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'post_title' =&gt; "Awesome Page!",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'post_content' =&gt; "",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'post_status' =&gt; "publish",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'post_type' =&gt; 'page',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$postID = wp_insert_post($post1, $error);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_post_meta($postID, "_wp_page_template", "awesome-page.php");
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_option("awesome_page_id", $postID);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre></div></div>
+</div>
+
+<div class="post">
 <h2><a name=""></a></h2>
 
 </div>
 
+<div class="post">
+<h2><a name=""></a></h2>
 
+</div>
+
+<div class="post">
+<h2><a name=""></a></h2>
+
+</div>
+
+<div class="post">
+<h2><a name=""></a></h2>
+
+</div>
 </div> <!-- End: Content -->
 </div> <!-- End: Wrap -->
 <a href="#" class="scrollup left" style="display: block;">Scroll</a>
