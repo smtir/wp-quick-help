@@ -69,8 +69,8 @@ li {
 	list-style-type: none;
 	}
 .left {
-width: 32px;
-height: 32px;
+width: 40px;
+height: 40px;
 opacity: 0.4;
 position: fixed;
 bottom: 50px;
@@ -80,8 +80,8 @@ text-indent: -9999px;
 background: url('../img/scroll.png') no-repeat;
 }
 .right {
-width: 32px;
-height: 32px;
+width: 40px;
+height: 40px;
 opacity: 0.4;
 position: fixed;
 bottom: 50px;

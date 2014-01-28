@@ -95,6 +95,7 @@
 			<li><a href="#scroll">Div Add Class When Scroll</a></li>
             <li><a href="#back">Javascript Back</a></li>
             <li><a href="#popup">Javascript Popup</a></li>
+            <li><a href="#scroll2">Scroll Bar</a></li>
 		</ul>
 	</li>	
 	<li><a href="#scode">Some Shortcode</a></li>	
@@ -1411,8 +1412,14 @@ function create_pages(){
 </div>
 
 <div class="post">
-<h2><a name=""></a></h2>
+<h2><a name="scroll2">Scroll Bar</a></h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_javascript snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_symbol">&lt;</span>script type<span class="sh_symbol">=</span><span class="sh_string">"text/javascript"</span><span class="sh_symbol">&gt;</span></li><li>  $<span class="sh_symbol">(</span>document<span class="sh_symbol">).</span><span class="sh_function">ready</span><span class="sh_symbol">(</span><span class="sh_keyword">function</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">var</span> nicesx <span class="sh_symbol">=</span> $<span class="sh_symbol">(</span><span class="sh_string">"body"</span><span class="sh_symbol">).</span><span class="sh_function">niceScroll</span><span class="sh_symbol">(</span><span class="sh_cbracket">{</span>cursorcolor<span class="sh_symbol">:</span><span class="sh_string">"#45aeea"</span><span class="sh_symbol">,</span>background<span class="sh_symbol">:</span><span class="sh_string">"#fff"</span><span class="sh_symbol">,</span>cursorwidth<span class="sh_symbol">:</span><span class="sh_number">8</span><span class="sh_symbol">,</span>cursorborder<span class="sh_symbol">:</span><span class="sh_number">0</span><span class="sh_symbol">,</span>cursorborderradius<span class="sh_symbol">:</span><span class="sh_number">0</span><span class="sh_symbol">,</span>cursoropacitymax<span class="sh_symbol">:</span><span class="sh_number">1</span><span class="sh_symbol">,</span>scrollspeed<span class="sh_symbol">:</span><span class="sh_number">100</span><span class="sh_symbol">,</span>touchbehavior<span class="sh_symbol">:</span><span class="sh_keyword">false</span><span class="sh_symbol">,</span>autohidemode<span class="sh_symbol">:</span><span class="sh_keyword">false</span><span class="sh_symbol">,</span>smoothscroll<span class="sh_symbol">:</span> <span class="sh_keyword">true</span><span class="sh_symbol">,</span>hwacceleration<span class="sh_symbol">:</span> <span class="sh_keyword">true</span><span class="sh_cbracket">}</span><span class="sh_symbol">);</span></li><li>  <span class="sh_cbracket">}</span><span class="sh_symbol">);</span>  </li><li><span class="sh_symbol">&lt;/</span>script<span class="sh_symbol">&gt;</span></li><li></li><li>JQuery Plugin<span class="sh_symbol">:</span> https<span class="sh_symbol">:</span><span class="sh_comment">//code.google.com/p/jquery-nicescroll/downloads/list</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">&lt;script type="text/javascript"&gt;
+  $(document).ready(function() {
+    var nicesx = $("body").niceScroll({cursorcolor:"#45aeea",background:"#fff",cursorwidth:8,cursorborder:0,cursorborderradius:0,cursoropacitymax:1,scrollspeed:100,touchbehavior:false,autohidemode:false,smoothscroll: true,hwacceleration: true});
+  });  
+&lt;/script&gt;
 
+JQuery Plugin: https://code.google.com/p/jquery-nicescroll/downloads/list</pre></div></div>
 </div>
 
 <div class="post">
