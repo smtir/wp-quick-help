@@ -27,6 +27,7 @@
 <ul id="navs">
 	<li><a href="#">CSS</a>
 		<ul>
+			<li><a href="#prefix">Browser Prefix</a></li>
 			<li><a href="#child">Childthemes Style</a></li>
 			<li><a href="#style">Style CSS</a></li>
 			<li><a href="#reset">Reset CSS</a></li>
@@ -83,7 +84,8 @@
 		<ul>
 			<li><a href="#php">Php style</a></li>
 			<li><a href="#slink">Short Link</a></li>
-			<li><a href="#intxtpost">Include Content in Post</a></li>
+			<li><a href="#intxtpost">Include Content in Post( Line Number)</a></li>
+			<li><a href="#intxtpostprgf">Include Content in Post( Paragraph Number)</a></li>
 			<li><a href="#lcounter">Loading Counter</a></li>
 			<li><a href="#strick">Some Tricks</a></li>
 			<li><a href="#database">Database URL Change</a></li>
@@ -97,8 +99,22 @@
             <li><a href="#popup">Javascript Popup</a></li>
             <li><a href="#scroll2">Scroll Bar</a></li>
 		</ul>
-	</li>	
-	<li><a href="#scode">Some Shortcode</a></li>	
+	</li>
+	<li><a href="#">Redux</a>
+	<ul>
+			<li><a href="#redux-retrieve">Redux Option Retrieve</a></li>
+			<li><a href="#redux-img">Redux Image Retrieve</a></li>
+            <li><a href="#redux-slide-img">Redux Repeating Field Retrieve</a></li>
+			<li><a href="#redux-repeat">Redux Multiple Field</a></li>
+		</ul>
+	</li>
+	<li><a href="#">CMB</a>
+		<ul>
+			<li><a href="#cmb">CMB Option Retrieve</a></li>
+			<li><a href="#cmb_repeat">CMB Repeating Field</a></li>
+		</ul>
+	</li>
+	<li><a href="#scode">Some Shortcode</a></li>
 </ul>
 </div>
 <div class="content">
@@ -207,7 +223,6 @@ html[xmlns] .clearfix { display: block; }
 -o-border-radius: 10px;
 -icab-border-radius: 10px;
 -khtml-border-radius: 10px;</pre></div></div>
-<div class="go"><a href="#top">Go to Top</a></div>
 </div>
 
 <div class="post">
@@ -1423,8 +1438,213 @@ JQuery Plugin: https://code.google.com/p/jquery-nicescroll/downloads/list</pre><
 </div>
 
 <div class="post">
-<h2><a name=""></a></h2>
+<h2><a name="intxtpostprgf">Include Content in Post( Paragraph Number)</a></h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_php snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_comment">//Insert content after 1st paragraph of single post content.</span></li><li></li><li><span class="sh_function">add_filter</span><span class="sh_symbol">(</span> <span class="sh_string">'the_content'</span><span class="sh_symbol">,</span> <span class="sh_string">'prefix_insert_content_ads'</span> <span class="sh_symbol">);</span></li><li></li><li><span class="sh_keyword">function</span> <span class="sh_function">prefix_insert_content_ads</span><span class="sh_symbol">(</span> <span class="sh_variable">$content</span> <span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$content_code</span> <span class="sh_symbol">=</span> <span class="sh_string">'// Content Goes Here'</span><span class="sh_symbol">;</span></li><li></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span> <span class="sh_function">is_single</span><span class="sh_symbol">()</span> <span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">return</span> <span class="sh_function">insert_after_paragraph</span><span class="sh_symbol">(</span> <span class="sh_variable">$content_code</span> <span class="sh_symbol">,</span> <span class="sh_number">1</span><span class="sh_symbol">,</span> <span class="sh_variable">$content</span> <span class="sh_symbol">);</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">return</span> <span class="sh_variable">$content</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li> </li><li><span class="sh_comment">// Parent Function that makes the magic happen</span></li><li> </li><li><span class="sh_keyword">function</span> <span class="sh_function">insert_after_paragraph</span><span class="sh_symbol">(</span> <span class="sh_variable">$insertion</span><span class="sh_symbol">,</span> <span class="sh_variable">$paragraph_id</span><span class="sh_symbol">,</span> <span class="sh_variable">$content</span> <span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$closing_p</span> <span class="sh_symbol">=</span> <span class="sh_string">'&lt;/p&gt;'</span><span class="sh_symbol">;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$paragraphs</span> <span class="sh_symbol">=</span> <span class="sh_function">explode</span><span class="sh_symbol">(</span> <span class="sh_variable">$closing_p</span><span class="sh_symbol">,</span> <span class="sh_variable">$content</span> <span class="sh_symbol">);</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">foreach</span> <span class="sh_symbol">(</span><span class="sh_variable">$paragraphs</span> <span class="sh_keyword">as</span> <span class="sh_variable">$index</span> <span class="sh_symbol">=&gt;</span> <span class="sh_variable">$paragraph</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span> <span class="sh_function">trim</span><span class="sh_symbol">(</span> <span class="sh_variable">$paragraph</span> <span class="sh_symbol">)</span> <span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$paragraphs</span><span class="sh_symbol">[</span><span class="sh_variable">$index</span><span class="sh_symbol">]</span> <span class="sh_symbol">.=</span> <span class="sh_variable">$closing_p</span><span class="sh_symbol">;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span></li><li></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span> <span class="sh_variable">$paragraph_id</span> <span class="sh_symbol">==</span> <span class="sh_variable">$index</span> <span class="sh_symbol">+</span> <span class="sh_number">1</span> <span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$paragraphs</span><span class="sh_symbol">[</span><span class="sh_variable">$index</span><span class="sh_symbol">]</span> <span class="sh_symbol">.=</span> <span class="sh_variable">$insertion</span><span class="sh_symbol">;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">return</span> <span class="sh_function">implode</span><span class="sh_symbol">(</span> <span class="sh_string">''</span><span class="sh_symbol">,</span> <span class="sh_variable">$paragraphs</span> <span class="sh_symbol">);</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">//Insert content after 1st paragraph of single post content.
 
+add_filter( 'the_content', 'prefix_insert_content_ads' );
+
+function prefix_insert_content_ads( $content ) {
+	
+	$content_code = '// Content Goes Here';
+
+	if ( is_single() ) {
+		return insert_after_paragraph( $content_code , 1, $content );
+	}
+	
+	return $content;
+}
+ 
+// Parent Function that makes the magic happen
+ 
+function insert_after_paragraph( $insertion, $paragraph_id, $content ) {
+	$closing_p = '&lt;/p&gt;';
+	$paragraphs = explode( $closing_p, $content );
+	foreach ($paragraphs as $index =&gt; $paragraph) {
+
+		if ( trim( $paragraph ) ) {
+			$paragraphs[$index] .= $closing_p;
+		}
+
+		if ( $paragraph_id == $index + 1 ) {
+			$paragraphs[$index] .= $insertion;
+		}
+	}
+	
+	return implode( '', $paragraphs );
+}
+}</pre></div></div>
+</div>
+
+<div class="post">
+<h2><a name="redux-retrieve">Redux Option Retrieve</a></h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_php snippet-formatted sh_sourceCode"><ol class="snippet-num"><li>Normal<span class="sh_symbol">:</span> </li><li><span class="sh_symbol">=======</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_function">themes_option</span><span class="sh_symbol">(</span><span class="sh_string">'option_id'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li></li><li>If Statement<span class="sh_symbol">:</span></li><li><span class="sh_symbol">=============</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$sample_statement</span><span class="sh_symbol">=</span> <span class="sh_function">themes_option</span><span class="sh_symbol">(</span><span class="sh_string">'option_id'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_variable">$sample_statement</span><span class="sh_symbol">!==</span> <span class="sh_string">''</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;</span>img src<span class="sh_symbol">=</span><span class="sh_string">"&lt;?php echo themes_option('option_id'); ?&gt;"</span> <span class="sh_symbol">/&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li><li></li><li></li><li>If <span class="sh_keyword">else</span> Statement<span class="sh_symbol">:</span></li><li><span class="sh_symbol">==================</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$sample_statement</span><span class="sh_symbol">=</span> <span class="sh_function">themes_option</span><span class="sh_symbol">(</span><span class="sh_string">'option_id'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_variable">$sample_statement</span><span class="sh_symbol">!==</span> <span class="sh_string">''</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_function">themes_option</span><span class="sh_symbol">(</span><span class="sh_string">'option_id'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_keyword">else</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li>Some Thing Here Add</li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span><span class="sh_string">" /&gt;</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">Normal: 
+=======
+&lt;?php echo themes_option('option_id'); ?&gt;
+
+If Statement:
+=============
+&lt;?php $sample_statement= themes_option('option_id'); ?&gt;
+&lt;?php if ($sample_statement!== '') { ?&gt;
+&lt;img src="&lt;?php echo themes_option('option_id'); ?&gt;" /&gt;
+&lt;?php } ?&gt;
+
+
+If else Statement:
+==================
+&lt;?php $sample_statement= themes_option('option_id'); ?&gt;
+&lt;?php if ($sample_statement!== '') { ?&gt;
+&lt;?php echo themes_option('option_id'); ?&gt;
+&lt;?php } else { ?&gt;
+Some Thing Here Add
+&lt;?php } ?&gt;" /&gt;</pre></div></div>
+</div>
+
+<div class="post">
+<h2><a name="redux-img">Redux Image Retrieve</a></h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_php snippet-formatted sh_sourceCode"><ol class="snippet-num"><li>Normal<span class="sh_symbol">:</span></li><li><span class="sh_symbol">=======</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_function">themes_option</span><span class="sh_symbol">(</span><span class="sh_string">'img_id'</span><span class="sh_symbol">,</span> false<span class="sh_symbol">,</span> <span class="sh_string">'url'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li></li><li>If Statement<span class="sh_symbol">:</span></li><li><span class="sh_symbol">=============</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$sample_img</span><span class="sh_symbol">=</span> <span class="sh_function">themes_option</span><span class="sh_symbol">(</span><span class="sh_string">'img_id'</span><span class="sh_symbol">,</span> false<span class="sh_symbol">,</span> <span class="sh_string">'url'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_variable">$sample_img</span><span class="sh_symbol">!==</span> <span class="sh_string">''</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;</span>img src<span class="sh_symbol">=</span><span class="sh_string">"&lt;?php echo themes_option('img_id', false, 'url'); ?&gt;"</span> <span class="sh_symbol">/&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li><li></li><li></li><li>If <span class="sh_keyword">else</span> Statement<span class="sh_symbol">:</span></li><li><span class="sh_symbol">==================</span></li><li><span class="sh_symbol">&lt;</span>img src<span class="sh_symbol">=</span><span class="sh_string">"&lt;?php $sample_img= themes_option('img_id', false, 'url' ); ?&gt;</span></li><li><span class="sh_string">&lt;?php if ($sample_img!== '') { ?&gt;</span></li><li><span class="sh_string">&lt;?php echo themes_option('img_id', false, 'url' ); ?&gt;</span></li><li><span class="sh_string">&lt;?php } else { ?&gt;</span></li><li><span class="sh_string">&lt;?php bloginfo('template_directory'); ?&gt;/img/img.jpg&lt;?php } ?&gt;"</span> <span class="sh_symbol">/&gt;</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">Normal:
+=======
+&lt;?php echo themes_option('img_id', false, 'url'); ?&gt;
+
+If Statement:
+=============
+&lt;?php $sample_img= themes_option('img_id', false, 'url'); ?&gt;
+&lt;?php if ($sample_img!== '') { ?&gt;
+&lt;img src="&lt;?php echo themes_option('img_id', false, 'url'); ?&gt;" /&gt;
+&lt;?php } ?&gt;
+
+
+If else Statement:
+==================
+&lt;img src="&lt;?php $sample_img= themes_option('img_id', false, 'url' ); ?&gt;
+&lt;?php if ($sample_img!== '') { ?&gt;
+&lt;?php echo themes_option('img_id', false, 'url' ); ?&gt;
+&lt;?php } else { ?&gt;
+&lt;?php bloginfo('template_directory'); ?&gt;/img/img.jpg&lt;?php } ?&gt;" /&gt;</pre></div></div>
+</div>
+
+<div class="post">
+<h2><a name="redux-slide-img">Redux Repeating Field Retrieve</a></h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_php snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$some_repeat</span> <span class="sh_symbol">=</span> <span class="sh_function">themes_option</span><span class="sh_symbol">(</span><span class="sh_string">'repeat_id'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">foreach</span> <span class="sh_symbol">(</span><span class="sh_variable">$some_repeat</span> <span class="sh_keyword">as</span> <span class="sh_variable">$key</span> <span class="sh_symbol">=&gt;</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li>Title<span class="sh_symbol">:</span> <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'title'</span><span class="sh_symbol">];</span> <span class="sh_symbol">?&gt;</span></li><li>Desc<span class="sh_symbol">:</span> <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'description'</span><span class="sh_symbol">];</span> <span class="sh_symbol">?&gt;</span></li><li>Image<span class="sh_symbol">:</span> <span class="sh_symbol">&lt;</span>img src<span class="sh_symbol">=</span><span class="sh_string">"&lt;?php echo $some_repeat_value['image']; ?&gt;"</span> <span class="sh_symbol">/&gt;</span></li><li>Link<span class="sh_symbol">:</span> <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'url'</span><span class="sh_symbol">];</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li><li> </li><li> <span class="sh_keyword">or</span></li><li></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">global</span> <span class="sh_variable">$themes_option</span><span class="sh_symbol">;</span> <span class="sh_keyword">foreach</span><span class="sh_symbol">(</span><span class="sh_variable">$themes_option</span><span class="sh_symbol">[</span><span class="sh_string">'repeat_id'</span><span class="sh_symbol">]</span> <span class="sh_keyword">as</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li><span class="sh_keyword">echo</span> <span class="sh_string">'&lt;img src="'</span> <span class="sh_symbol">.</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'image'</span><span class="sh_symbol">]</span> <span class="sh_symbol">.</span> <span class="sh_string">'" /&gt;'</span><span class="sh_symbol">;</span></li><li><span class="sh_keyword">echo</span> <span class="sh_string">'&lt;p&gt;Title: '</span> <span class="sh_symbol">.</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'title'</span><span class="sh_symbol">]</span> <span class="sh_symbol">.</span> <span class="sh_string">'&lt;/p&gt;'</span><span class="sh_symbol">;</span></li><li><span class="sh_keyword">echo</span> <span class="sh_string">'&lt;p&gt;Desc: '</span> <span class="sh_symbol">.</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'description'</span><span class="sh_symbol">]</span> <span class="sh_symbol">.</span> <span class="sh_string">'&lt;/p&gt;'</span><span class="sh_symbol">;</span> </li><li><span class="sh_keyword">echo</span> <span class="sh_string">'Link: &lt;a href="'</span> <span class="sh_symbol">.</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'url'</span><span class="sh_symbol">]</span> <span class="sh_symbol">.</span> <span class="sh_string">'"&gt;Link Anchor&lt;/a&gt;'</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">&lt;?php $some_repeat = themes_option('repeat_id'); ?&gt;
+&lt;?php foreach ($some_repeat as $key =&gt; $some_repeat_value) { ?&gt;
+Title: &lt;?php echo $some_repeat_value['title']; ?&gt;
+Desc: &lt;?php echo $some_repeat_value['description']; ?&gt;
+Image: &lt;img src="&lt;?php echo $some_repeat_value['image']; ?&gt;" /&gt;
+Link: &lt;?php echo $some_repeat_value['url']; ?&gt;
+&lt;?php } ?&gt;
+ 
+ or
+
+&lt;?php global $themes_option; foreach($themes_option['repeat_id'] as $some_repeat_value) {
+echo '&lt;img src="' . $some_repeat_value['image'] . '" /&gt;';
+echo '&lt;p&gt;Title: ' . $some_repeat_value['title'] . '&lt;/p&gt;';
+echo '&lt;p&gt;Desc: ' . $some_repeat_value['description'] . '&lt;/p&gt;'; 
+echo 'Link: &lt;a href="' . $some_repeat_value['url'] . '"&gt;Link Anchor&lt;/a&gt;';
+} ?&gt;</pre></div></div>
+</div>
+
+<div class="post">
+<h2><a name="redux-repeat">Redux Multiple Field</a></h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_php snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$some_multiple</span> <span class="sh_symbol">=</span> <span class="sh_function">themes_option</span><span class="sh_symbol">(</span><span class="sh_string">'option_id'</span><span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">foreach</span> <span class="sh_symbol">(</span><span class="sh_variable">$some_multiple</span> <span class="sh_keyword">as</span> <span class="sh_variable">$key</span> <span class="sh_symbol">=&gt;</span> <span class="sh_variable">$some_multiple_value</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_variable">$some_multiple_value</span><span class="sh_symbol">;</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span>  </li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">&lt;?php $some_multiple = themes_option('option_id'); ?&gt;
+&lt;?php foreach ($some_multiple as $key =&gt; $some_multiple_value) { ?&gt;
+&lt;?php echo $some_multiple_value; ?&gt;
+&lt;?php } ?&gt;  
+
+</pre></div></div>
+</div>
+
+<div class="post">
+<h2><a name="prefix"></a>Browser Prefix</h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_css snippet-formatted sh_sourceCode"><ol class="snippet-num"><li>1<span class="sh_symbol">.</span> Safari and Chrome <span class="sh_symbol">(-</span>webkit<span class="sh_symbol">-)</span></li><li>2<span class="sh_symbol">.</span> Firefox <span class="sh_symbol">(-</span>moz<span class="sh_symbol">-)</span></li><li>3<span class="sh_symbol">.</span> Opera <span class="sh_symbol">(-</span>o<span class="sh_symbol">-)</span></li><li>4<span class="sh_symbol">.</span> Internet Explorer <span class="sh_symbol">(-</span>ms<span class="sh_symbol">-)</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">1. Safari and Chrome (-webkit-)
+2. Firefox (-moz-)
+3. Opera (-o-)
+4. Internet Explorer (-ms-)</pre></div></div>
+</div>
+
+<div class="post">
+<h2><a name="cmb"></a>CMB Option Retrieve</h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_php snippet-formatted sh_sourceCode"><ol class="snippet-num"><li>Normal<span class="sh_symbol">:</span> </li><li><span class="sh_symbol">=======</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li></li><li><span class="sh_keyword">or</span></li><li></li><li><span class="sh_symbol">&lt;?php</span></li><li><span class="sh_keyword">global</span> <span class="sh_variable">$post</span><span class="sh_symbol">;</span></li><li><span class="sh_variable">$xxx</span><span class="sh_symbol">=</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span> <span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true <span class="sh_symbol">);</span></li><li><span class="sh_keyword">echo</span> <span class="sh_variable">$xxx</span><span class="sh_symbol">;</span></li><li><span class="sh_symbol">?&gt;</span></li><li></li><li>If Statement<span class="sh_symbol">:</span></li><li><span class="sh_symbol">=============</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$sample_statement</span><span class="sh_symbol">=</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_variable">$sample_statement</span><span class="sh_symbol">!==</span> <span class="sh_string">''</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li><li></li><li><span class="sh_keyword">or</span></li><li></li><li>If <span class="sh_keyword">else</span> Statement<span class="sh_symbol">:</span></li><li><span class="sh_symbol">==================</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$sample_statement</span><span class="sh_symbol">=</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_variable">$sample_statement</span><span class="sh_symbol">!==</span> <span class="sh_string">''</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_keyword">else</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li>Some Thing Here Add</li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li><li></li><li><span class="sh_keyword">or</span></li><li></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">if</span><span class="sh_symbol">(</span><span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">))</span> <span class="sh_symbol">:</span> <span class="sh_symbol">?&gt;</span> </li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">else</span><span class="sh_symbol">:</span> <span class="sh_symbol">?&gt;</span></li><li>Some Thing Here Add</li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">endif</span><span class="sh_symbol">;</span> <span class="sh_symbol">?&gt;</span></li><li></li><li>Dropdown<span class="sh_symbol">:</span></li><li><span class="sh_symbol">==================</span></li><li><span class="sh_symbol">&lt;?php</span></li><li><span class="sh_keyword">if</span><span class="sh_symbol">(</span><span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">)</span> <span class="sh_symbol">==</span> <span class="sh_string">'value_1'</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li><span class="sh_function">dynamic_sidebar</span><span class="sh_symbol">(</span> <span class="sh_string">'Page Sidebar 1'</span> <span class="sh_symbol">);</span></li><li><span class="sh_cbracket">}</span></li><li><span class="sh_keyword">elseif</span><span class="sh_symbol">(</span><span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">)</span> <span class="sh_symbol">==</span> <span class="sh_string">'value_2'</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li><span class="sh_function">dynamic_sidebar</span><span class="sh_symbol">(</span> <span class="sh_string">'Page Sidebar 2'</span> <span class="sh_symbol">);</span></li><li><span class="sh_cbracket">}</span>         </li><li><span class="sh_symbol">?&gt;</span></li><li></li><li>Checkbox<span class="sh_symbol">:</span></li><li><span class="sh_symbol">==================</span></li><li><span class="sh_symbol">&lt;?php</span></li><li><span class="sh_keyword">if</span><span class="sh_symbol">(</span><span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_check'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">))</span>  <span class="sh_cbracket">{</span></li><li>  <span class="sh_variable">$some</span> <span class="sh_symbol">=</span> <span class="sh_string">'some'</span><span class="sh_symbol">;</span></li><li>  <span class="sh_function">dynamic_sidebar</span><span class="sh_symbol">(</span> <span class="sh_string">'Page Sidebar 2'</span> <span class="sh_symbol">);</span></li><li><span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li><li></li><li>Multiple Field<span class="sh_symbol">:</span></li><li><span class="sh_symbol">=================</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$some_multiple</span> <span class="sh_symbol">=</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">foreach</span> <span class="sh_symbol">(</span><span class="sh_variable">$some_multiple</span> <span class="sh_keyword">as</span> <span class="sh_variable">$key</span> <span class="sh_symbol">=&gt;</span> <span class="sh_variable">$some_multiple_value</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_variable">$some_multiple_value</span><span class="sh_symbol">;</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span>     </li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">Normal: 
+=======
+&lt;?php echo get_post_meta($post-&gt;ID, '_cmb_xxx', true); ?&gt;
+
+or
+
+&lt;?php
+global $post;
+$xxx= get_post_meta( $post-&gt;ID, '_cmb_xxx', true );
+echo $xxx;
+?&gt;
+
+If Statement:
+=============
+&lt;?php $sample_statement= get_post_meta($post-&gt;ID, '_cmb_xxx', true); ?&gt;
+&lt;?php if ($sample_statement!== '') { ?&gt;
+&lt;?php echo get_post_meta($post-&gt;ID, '_cmb_xxx', true); ?&gt;
+&lt;?php } ?&gt;
+
+or
+
+If else Statement:
+==================
+&lt;?php $sample_statement= get_post_meta($post-&gt;ID, '_cmb_xxx', true); ?&gt;
+&lt;?php if ($sample_statement!== '') { ?&gt;
+&lt;?php echo get_post_meta($post-&gt;ID, '_cmb_xxx', true); ?&gt;
+&lt;?php } else { ?&gt;
+Some Thing Here Add
+&lt;?php } ?&gt;
+
+or
+
+&lt;?php if(get_post_meta($post-&gt;ID, '_cmb_xxx', true)) : ?&gt; 
+&lt;?php echo get_post_meta($post-&gt;ID, '_cmb_xxx', true); ?&gt;
+&lt;?php else: ?&gt;
+Some Thing Here Add
+&lt;?php endif; ?&gt;
+
+Dropdown:
+==================
+&lt;?php
+if(get_post_meta($post-&gt;ID, '_cmb_xxx', true) == 'value_1') {
+dynamic_sidebar( 'Page Sidebar 1' );
+}
+elseif(get_post_meta($post-&gt;ID, '_cmb_xxx', true) == 'value_2') {
+dynamic_sidebar( 'Page Sidebar 2' );
+}         
+?&gt;
+
+Checkbox:
+==================
+&lt;?php
+if(get_post_meta($post-&gt;ID, '_cmb_check', true))  {
+  $some = 'some';
+  dynamic_sidebar( 'Page Sidebar 2' );
+} ?&gt;
+
+Multiple Field:
+=================
+&lt;?php $some_multiple = get_post_meta($post-&gt;ID, '_cmb_xxx', true); ?&gt;
+&lt;?php foreach ($some_multiple as $key =&gt; $some_multiple_value) { ?&gt;
+&lt;?php echo $some_multiple_value; ?&gt;
+&lt;?php } ?&gt;     </pre></div></div>
+</div>
+
+<div class="post">
+<h2><a name="cmb_repeat"></a>CMB Repeating Field</h2>
+<div class="snippet-container"><div class="sh_default snippet-wrap"><div class="snippet-menu sh_sourceCode"><a class="snippet-window sh_url" href="#">pop-up</a><a class="snippet-text sh_url" href="#">text</a></div><pre class="shi_pre sh_php snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$some_repeat</span> <span class="sh_symbol">=</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">);</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">foreach</span> <span class="sh_symbol">(</span><span class="sh_variable">$some_repeat</span> <span class="sh_keyword">as</span> <span class="sh_variable">$key</span> <span class="sh_symbol">=&gt;</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_symbol">?&gt;</span></li><li>Title<span class="sh_symbol">:</span> <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'title'</span><span class="sh_symbol">];</span> <span class="sh_symbol">?&gt;</span></li><li>Desc<span class="sh_symbol">:</span> <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'description'</span><span class="sh_symbol">];</span> <span class="sh_symbol">?&gt;</span></li><li>Image<span class="sh_symbol">:</span> <span class="sh_symbol">&lt;</span>img src<span class="sh_symbol">=</span><span class="sh_string">"&lt;?php echo $some_repeat_value['image']; ?&gt;"</span> <span class="sh_symbol">/&gt;</span></li><li>Image Caption<span class="sh_symbol">:</span> <span class="sh_symbol">&lt;?php</span> <span class="sh_keyword">echo</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'image_caption'</span><span class="sh_symbol">];</span> <span class="sh_symbol">?&gt;</span></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li><li> </li><li> <span class="sh_keyword">or</span></li><li></li><li><span class="sh_symbol">&lt;?php</span> <span class="sh_variable">$some_repeat</span> <span class="sh_symbol">=</span> <span class="sh_function">get_post_meta</span><span class="sh_symbol">(</span><span class="sh_variable">$post</span><span class="sh_symbol">-&gt;</span>ID<span class="sh_symbol">,</span> <span class="sh_string">'_cmb_xxx'</span><span class="sh_symbol">,</span> true<span class="sh_symbol">);</span> <span class="sh_keyword">foreach</span><span class="sh_symbol">(</span><span class="sh_variable">$some_repeat</span> <span class="sh_keyword">as</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li><span class="sh_keyword">echo</span> <span class="sh_string">'&lt;p&gt;Title: '</span> <span class="sh_symbol">.</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'title'</span><span class="sh_symbol">]</span> <span class="sh_symbol">.</span> <span class="sh_string">'&lt;/p&gt;'</span><span class="sh_symbol">;</span></li><li><span class="sh_keyword">echo</span> <span class="sh_string">'&lt;p&gt;Desc: '</span> <span class="sh_symbol">.</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'description'</span><span class="sh_symbol">]</span> <span class="sh_symbol">.</span> <span class="sh_string">'&lt;/p&gt;'</span><span class="sh_symbol">;</span></li><li><span class="sh_keyword">echo</span> <span class="sh_string">'&lt;img src="'</span> <span class="sh_symbol">.</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'image'</span><span class="sh_symbol">]</span> <span class="sh_symbol">.</span> <span class="sh_string">'" /&gt;'</span><span class="sh_symbol">;</span> </li><li><span class="sh_keyword">echo</span> <span class="sh_string">'&lt;/p&gt;Image Caption: '</span> <span class="sh_symbol">.</span> <span class="sh_variable">$some_repeat_value</span><span class="sh_symbol">[</span><span class="sh_string">'image_caption'</span><span class="sh_symbol">]</span> <span class="sh_symbol">.</span> <span class="sh_string">'&lt;/p&gt;'</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span> <span class="sh_symbol">?&gt;</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;" tabindex="0" contenteditable="">&lt;?php $some_repeat = get_post_meta($post-&gt;ID, '_cmb_xxx', true); ?&gt;
+&lt;?php foreach ($some_repeat as $key =&gt; $some_repeat_value) { ?&gt;
+Title: &lt;?php echo $some_repeat_value['title']; ?&gt;
+Desc: &lt;?php echo $some_repeat_value['description']; ?&gt;
+Image: &lt;img src="&lt;?php echo $some_repeat_value['image']; ?&gt;" /&gt;
+Image Caption: &lt;?php echo $some_repeat_value['image_caption']; ?&gt;
+&lt;?php } ?&gt;
+ 
+ or
+
+&lt;?php $some_repeat = get_post_meta($post-&gt;ID, '_cmb_xxx', true); foreach($some_repeat as $some_repeat_value) {
+echo '&lt;p&gt;Title: ' . $some_repeat_value['title'] . '&lt;/p&gt;';
+echo '&lt;p&gt;Desc: ' . $some_repeat_value['description'] . '&lt;/p&gt;';
+echo '&lt;img src="' . $some_repeat_value['image'] . '" /&gt;'; 
+echo '&lt;/p&gt;Image Caption: ' . $some_repeat_value['image_caption'] . '&lt;/p&gt;';
+} ?&gt;</pre></div></div>
 </div>
 
 <div class="post">
